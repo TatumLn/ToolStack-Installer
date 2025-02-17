@@ -9,6 +9,51 @@ echo -e "\033[0m"     # Réinitialiser la couleur
 echo -e "\n\033[1;32mBienvenue dans ToolStack-Installer !\033[0m"
 echo -e "Ce script vous permet d'installer rapidement les outils essentiels pour le développement et DevOps.\n"
 
+# Fonction pour détecter et afficher la distribution Linux
+detect_distribution() {
+    if [ -f /etc/os-release ]; then
+        # Récupération de l'ID de la distribution depuis os-release
+        . /etc/os-release
+        DISTRO=$ID
+    elif [ -f /etc/debian_version ]; then
+        DISTRO="debian"
+    elif [ -f /etc/redhat-release ]; then
+        if grep -q "CentOS" /etc/redhat-release; then
+            DISTRO="centos"
+        else
+            DISTRO="rhel"
+        fi
+    elif [ -f /etc/arch-release ]; then
+        DISTRO="arch"
+    else
+        DISTRO="unknown"
+    fi
+    echo $DISTRO
+}
+
+# Fonction pour installer un paquetage selon la distribution
+install_package() {
+    local package=$1
+    local distro=$(detect_distribution)
+
+    if [ "$distro" == "debian" ] || [ "$distro" == "ubuntu" ] || [ "$distro" == "linuxmint" ] || [ "$distro" == "kali" ]; then
+        sudo apt update
+       # sudo apt install $package -y
+    elif [ "$distro" == "centos" ] || [ "$distro" == "rhel" ] || [ "$distro" == "fedora" ]; then
+	sudo dnf update
+       # sudo dnf install $package -y
+    elif [ "$distro" == "arch" ]; then
+	sudo pacman -Sy
+	#sudo pacman -S
+    else
+        echo "Distribution inconnue"
+    fi
+}
+
+# Détection de la distribution
+DISTRO=$(detect_distribution)
+echo -e "\033[1;36mDistribution détectée: $DISTRO\033[0m\n"
+
 # Liste des IDEs disponibles
 IDEs=("Visual Studio Code" "IntelliJ IDEA" "PyCharm" "Sublime Text" "Vim" "Quitter")
 
@@ -19,27 +64,32 @@ select ide in "${IDEs[@]}"; do
     case $ide in
         "Visual Studio Code")
             echo -e "\nVous avez sélectionné : \033[1;34mVisual Studio Code\033[0m"
-            # Ajouter ici la commande d'installation pour VS Code
+            # Installation pour VS Code
+	    install_package
             break
             ;;
         "IntelliJ IDEA")
             echo -e "\nVous avez sélectionné : \033[1;34mIntelliJ IDEA\033[0m"
-            # Ajouter ici la commande d'installation pour IntelliJ IDEA
+            # Installation pour IntelliJ IDEA
+	    install_package
             break
             ;;
         "PyCharm")
             echo -e "\nVous avez sélectionné : \033[1;34mPyCharm\033[0m"
-            # Ajouter ici la commande d'installation pour PyCharm
+            # Installation pour PyCharm
+	    install_package
             break
             ;;
         "Sublime Text")
             echo -e "\nVous avez sélectionné : \033[1;34mSublime Text\033[0m"
-            # Ajouter ici la commande d'installation pour Sublime Text
+            # Installation pour Sublime Text
+	    install_package
             break
             ;;
         "Vim")
             echo -e "\nVous avez sélectionné : \033[1;34mVim\033[0m"
-            # Ajouter ici la commande d'installation pour Vim
+            # Installation pour Vim
+	    install_package
             break
             ;;
         "Quitter")
