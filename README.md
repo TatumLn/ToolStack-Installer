@@ -5,45 +5,48 @@ ToolStack Installer est un script puissant et facile à utiliser qui automatise 
 
 ✨ Fonctionnalités
 
-    Installation automatisée : Plus besoin de passer des heures à installer et configurer manuellement vos outils.
+- Installation automatisée : Plus besoin de passer des heures à installer et configurer manuellement vos outils.
 
-    Multi-plateforme : Compatible avec Linux et Windows (via WSL).
+- Multi-plateforme : Compatible avec Linux et Windows (via WSL).
 
-    Dernières versions stables : Toujours à jour avec les versions les plus récentes et fiables.
+- Dernières versions stables : Toujours à jour avec les versions les plus récentes et fiables.
 
-    Personnalisable : Ajoutez ou retirez des outils en fonction de vos besoins.
+- Personnalisable : Ajoutez ou retirez des outils en fonction de vos besoins.
 
-    Open Source : Libre, transparent, et contributif.
+- Open Source : Libre, transparent, et contributif.
 
 🛠️ Outils inclus
 
-    Développement : VS Code, Git, Node.js, Python, Java, Docker, etc.
+- Développement : VS Code, Git, Node.js, Python, Java, Docker, etc.
 
-    DevOps : Kubernetes, Terraform, Ansible, Jenkins, Prometheus, etc.
+- DevOps : Kubernetes, Terraform, Ansible, Jenkins, Prometheus, etc.
 
-    Bases de données : PostgreSQL, MySQL, MongoDB.
+- Bases de données : PostgreSQL, MySQL, MongoDB.
 
 🚀 Pourquoi ToolStack Installer ?
 
-    Gagnez du temps : Configurez votre environnement en quelques minutes.
+- Gagnez du temps : Configurez votre environnement en quelques minutes.
 
-    Évitez les erreurs : Plus de soucis d'installation manuelle ou de dépendances manquantes.
+- Évitez les erreurs : Plus de soucis d'installation manuelle ou de dépendances manquantes.
 
-    Restez à jour : Profitez toujours des dernières versions stables des outils.
+- Restez à jour : Profitez toujours des dernières versions stables des outils.
 
-    Collaboratif : Contribuez au projet ou personnalisez-le pour vos besoins spécifiques.
+- Collaboratif : Contribuez au projet ou personnalisez-le pour vos besoins spécifiques.
 
 📦 Comment commencer ?
 
-    Clonez ce dépôt :
+- Clonez ce dépôt :
+
 ```bash
 git clone https://github.com/votre-utilisateur/ToolStack-Installer.git
 ```
-    Rendre le script executable :
+- Rendre le script executable :
+
 ```bash
 chmod +x ToolStack-Installer.sh
 ```
-    Exécutez le script :
+- Exécutez le script :
+
 ```bash
 ./Toolstack-Installer.sh
 ```
