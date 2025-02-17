@@ -31,22 +31,37 @@ detect_distribution() {
     echo $DISTRO
 }
 
+# Fonction pour vérifier l'installation d'un paquetage
+is_package_installed() {
+    local package=$1
+    if [ "$distro" == "debian" ] || [ "$distro" == "ubuntu" ] || [ "$distro" == "linuxmint" ] || [ "$distro" == "kali" ]; then
+        dpkg -s $package &> /dev/null
+    elif [ "$distro" == "centos" ] || [ "$distro" == "rhel" ]  || [ "$distro" == "fedora" ]; then
+        rpm -q $package &> /dev/null
+    fi
+}
+
 # Fonction pour installer un paquetage selon la distribution
 install_package() {
     local package=$1
     local distro=$(detect_distribution)
 
-    if [ "$distro" == "debian" ] || [ "$distro" == "ubuntu" ] || [ "$distro" == "linuxmint" ] || [ "$distro" == "kali" ]; then
-        sudo apt update
-       # sudo apt install $package -y
-    elif [ "$distro" == "centos" ] || [ "$distro" == "rhel" ] || [ "$distro" == "fedora" ]; then
-	sudo dnf update
-       # sudo dnf install $package -y
-    elif [ "$distro" == "arch" ]; then
-	sudo pacman -Sy
-	#sudo pacman -S
+    if is_package_installed "$package"; then
+        echo "L'éditeur $package est déjà installé."
+        return 0
     else
-        echo "Distribution inconnue"
+    	if [ "$distro" == "debian" ] || [ "$distro" == "ubuntu" ] || [ "$distro" == "linuxmint" ] || [ "$distro" == "kali" ]; then
+        	sudo apt update
+       		# sudo apt install $package -y
+    	elif [ "$distro" == "centos" ] || [ "$distro" == "rhel" ] || [ "$distro" == "fedora" ]; then
+		sudo dnf update
+       		# sudo dnf install $package -y
+    	elif [ "$distro" == "arch" ]; then
+		sudo pacman -Sy
+		#sudo pacman -S
+    	else
+        	echo "Distribution inconnue"
+	fi
     fi
 }
 
@@ -65,7 +80,7 @@ select ide in "${IDEs[@]}"; do
         "Visual Studio Code")
             echo -e "\nVous avez sélectionné : \033[1;34mVisual Studio Code\033[0m"
             # Installation pour VS Code
-	    install_package
+	    install_package jenkins
             break
             ;;
         "IntelliJ IDEA")
