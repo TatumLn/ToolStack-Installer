@@ -141,4 +141,34 @@ select ide in "${IDEs[@]}"; do
             echo -e "\n\033[1;31mOption invalide. Veuillez choisir un numéro valide.\033[0m"
             ;;
     esac
+
+# Afficher le menu des outils de gestion de versions après l'installation de l'IDE
+version_control_tools=("Git" "GitKraken" "Sourcetree" "Retour au menu precedent" "Quitter")
+
+#Afficher le menu
+echo -e "\n\033[1;33mSélectionnez les outils de gestion de versions que vous souhaitez installer :\033[0m"
+
+select vc_tool in "${version_control_tools[@]}"; do
+     case $vc_tool in
+       "Git")
+	   break
+	   ;;
+       "GitKraken")
+	   break
+	   ;;
+       "Sourcetree")
+	   ;;
+	   "Retour au menu principal")
+           echo -e "\nRetour au menu principal..."
+           break
+           ;;
+       "Quitter")
+           echo -e "\n\033[1;31mInstallation annulée. À bientôt !\033[0m"
+           exit 0
+           ;;
+       *)
+           echo -e "\n\033[1;31mOption invalide. Veuillez choisir un numéro valide.\033[0m"
+           ;;
+        esac
+    done
 done
